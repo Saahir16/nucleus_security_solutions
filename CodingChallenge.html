@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+</head>
+<body>
+<h2>Calculator</h2>
+
+<input type="text" id="number1" placeholder="Put in first number">
+<br><br>
+
+<input type="text" id="number2" placeholder="Put in second number">
+<br><br>
+
+<select id="operation">
+    <option value="add">Add</option>
+    <option value="subtract">Subtract</option>
+    <option value="multiply">Multiply</option>
+    <option value="divide">Divide</option>
+</select>
+
+<br><br>
+
+<button onclick="calculate()">Calculate</button>
+
+<h3 id="output"></h3>
+
+<script>
+
+function calculate() {
+
+    let number1 = parseFloat(document.getElementById("number1").value);
+    let number2 = parseFloat(document.getElementById("number2").value);
+    let operation = document.getElementById("operation").value;
+    let output;
+
+    if (operation === "add") {       
+        output = number1 + number2;
+    }
+    else if (operation === "subtract") {
+        output = number1 - number2;
+    }
+    else if (operation === "multiply") {
+        output = number1 * number2;
+    }
+    else if (operation === "divide") {
+        output = number1 / number2;
+    }
+
+    document.getElementById("output").innerText = "Output is " + output;
+}
+
+</script>
+</body>
+</html>
