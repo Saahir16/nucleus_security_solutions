@@ -1,1 +1,82 @@
+Follow up questions
+Can database queries and f strings be used together?? (prompt I gave)
 
+(Output)
+Yes. Database queries and f-strings can be used together in Python. But there’s a big warning you need to understand.
+
+1. What it looks like
+
+If you're using Python and building a SQL query, you can insert variables with an f-string:
+
+user_id = 5
+
+query = f"SELECT * FROM users WHERE id = {user_id}"
+cursor.execute(query)
+
+This works because the f-string replaces {user_id} with 5 before the query is sent to the database.
+
+2. Why this is usually a bad idea
+
+Using f-strings directly in SQL queries can cause SQL Injection, which is a major security issue.
+
+Example:
+
+username = input("Enter username: ")
+
+query = f"SELECT * FROM users WHERE username = '{username}'"
+cursor.execute(query)
+
+If someone enters:
+
+' OR 1=1 --
+
+Your query becomes:
+
+SELECT * FROM users WHERE username = '' OR 1=1 --
+
+Now the database returns every user. That’s how real systems get hacked.
+
+This vulnerability is called:
+
+SQL Injection
+
+3. The correct way (parameterized queries)
+
+Instead of f-strings, use query parameters:
+
+query = "SELECT * FROM users WHERE username = %s"
+cursor.execute(query, (username,))
+
+or with SQLite:
+
+query = "SELECT * FROM users WHERE username = ?"
+cursor.execute(query, (username,))
+
+The database driver safely inserts the value.
+
+4. When f-strings are acceptable
+
+You can safely use f-strings for non-user input, like:
+
+table names you control
+
+column names you control
+
+debugging logs
+
+Example:
+
+table = "users"
+query = f"SELECT * FROM {table}"
+
+But never for user input values.
+
+Bottom line
+
+Yes, f-strings can be used with SQL queries.
+
+But you almost never should when inserting user data.
+
+Use parameterized queries instead.
+
+From the prompt I used, I wanted to confirm my initial thoughts from the SQL injections in the code. I knew that something looked off so I asked Ai if it was the case. It told me so. I didn't have to reprompt since the output was good enough. If I changed my approach, I probably would have asked a shorter and more specific question. By doing so, the Ai would have known exactly what I want.
