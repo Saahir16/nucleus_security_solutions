@@ -1,1 +1,67 @@
+How far were you able to get with the exercise?
+What challenges did you encounter in the process?
+If you were given unlimited time, what additional functionality would you include?
+If you used AI, please include all of your prompts and answer the following questions:
+What did the AI do well?
+What did the AI do poorly?
+For the places it did poorly, how did you change your approach to your prompts to improve its output?
 
+I was able to do the whole exercise. One problem that I did have was figuring out how to put the frontend and backend in one place together. If I had unlimited time, I would have added in some CSS elements to make the display better. For the backend, I would have put in some checks on the input to make sure I don't divide by zero or something.
+
+I want to make a calculator in html and javascript so can you help me get started? I need two places to put numbers and the if else skeleton for the 4 operations of adding and multiplying and subtracting and division and a button for the calculation. Just give me the skeleton not the whole thing.
+
+11:50 PM
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculator</title>
+</head>
+<body>
+  <h2>Calculator</h2>
+
+  <input type="number" id="num1" placeholder="First number" />
+  <input type="number" id="num2" placeholder="Second number" />
+
+  <select id="operation">
+    <option value="add">Add (+)</option>
+    <option value="subtract">Subtract (−)</option>
+    <option value="multiply">Multiply (×)</option>
+    <option value="divide">Divide (÷)</option>
+  </select>
+
+  <button onclick="calculate()">Calculate</button>
+
+  <p>Result: <span id="result">—</span></p>
+
+  <script>
+    function calculate() {
+      const num1 = parseFloat(document.getElementById("num1").value);
+      const num2 = parseFloat(document.getElementById("num2").value);
+      const operation = document.getElementById("operation").value;
+      let result;
+
+      if (operation === "add") {
+        // TODO: add num1 and num2
+      } else if (operation === "subtract") {
+        // TODO: subtract num2 from num1
+      } else if (operation === "multiply") {
+        // TODO: multiply num1 and num2
+      } else if (operation === "divide") {
+        // TODO: divide num1 by num2
+      }
+
+      document.getElementById("result").textContent = result;
+    }
+  </script>
+</body>
+</html>
+Here's your skeleton! A few notes on what's set up:
+
+Two number inputs grab the values with parseFloat so they work with decimals.
+A dropdown lets the user pick the operation, and the if/else branches match each selected value.
+The result variable is declared before the if/else so it's in scope when you display it at the end.
+Each // TODO comment is where you'll fill in the actual math.
+
+Going into the challenge, I knew what parts were kind of needed but not how to put it all together. I used AI to show me what the order and strcture of things should be. It did a good job of making the starter skeleton for me and how everything needs to look. From the skeleton I was given, I was able to go in and tweak whatever I needed to make it how I wanted it to look.
